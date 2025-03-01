@@ -36,7 +36,10 @@ jobs:
       TANSU_IMAGE: ${{matrix.tansu}}
     steps:
       - uses: actions/checkout@v4
-      - run: docker compose --progress plain up --no-color --quiet-pull --detach
-      - run: docker compose exec minio /usr/bin/mc ready local
-      - run: docker compose exec minio /usr/bin/mc alias set local http://localhost:9000 ${{ secrets.AWS_ACCESS_KEY_ID }} ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - run: docker compose exec minio /usr/bin/mc mb local/tansu
+      - run: docker compose --ansi never --progress plain up --no-color --quiet-pull --detach
+      - run: docker compose --ansi never exec minio /usr/bin/mc ready local
+      - run: docker compose --ansi never exec minio /usr/bin/mc alias set local http://localhost:9000 ${{ secrets.AWS_ACCESS_KEY_ID }} ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - run: docker compose --ansi never exec minio /usr/bin/mc mb local/tansu
+      - run: sudo apt-get update
+      - run: apt-get install -y bats
+      - run: bats tests

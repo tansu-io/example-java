@@ -12,6 +12,18 @@ docker-compose-ps:
 docker-compose-logs:
     docker compose logs
 
+
+minio-local-alias:
+    docker compose exec minio /usr/bin/mc alias set local http://localhost:9000 minioadmin minioadmin
+
+minio-tansu-bucket:
+    docker compose exec minio /usr/bin/mc mb local/tansu
+
+minio-ready-local:
+    docker compose exec minio /usr/bin/mc ready local
+
+up: docker-compose-up minio-ready-local minio-local-alias minio-tansu-bucket
+
 list-topics:
     docker compose exec kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server ${ADVERTISED_LISTENER} --list
 
@@ -66,6 +78,9 @@ person-topic-consume:
         --property print.partition=true \
         --property print.headers=true \
         --property print.value=true
+
+bats:
+    bats tests
 
 codespace-create:
     gh codespace create \
