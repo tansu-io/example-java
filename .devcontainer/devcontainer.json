@@ -1,5 +1,5 @@
 {
-  "name": "tansu-kafka-python",
+  "name": "tansu-java-apache-kafka",
   "dockerFile": "Dockerfile",
   "postStartCommand": "./bin/up",
   "hostRequirements": {
@@ -7,17 +7,7 @@
     "memory": "4gb",
     "storage": "32gb"
   },
-  "customizations": {
-    "codespaces": {
-      "openFiles": [
-        "example.py"
-      ]
-    }
-  },
-  "forwardPorts": [
-    9092,
-    9100
-  ],
+  "forwardPorts": [9092, 9100],
   "portsAttributes": {
     "9092": {
       "label": "kafka"
