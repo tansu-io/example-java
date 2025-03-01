@@ -42,4 +42,5 @@ jobs:
       - run: docker compose --ansi never exec minio /usr/bin/mc mb local/tansu
       - run: sudo apt-get update
       - run: sudo apt-get install -y bats
+      - run: docker compose exec db /usr/bin/pg_isready --timeout=60
       - run: bats tests
