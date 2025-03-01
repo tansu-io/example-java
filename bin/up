@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cp example.env .env
+docker compose --progress plain up --no-color --quiet-pull --detach --remove-orphans
+mc ready local
+mc alias set local http://localhost:9000 minioadmin minioadmin
+mc mb local/tansu
