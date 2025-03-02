@@ -16,7 +16,6 @@ jobs:
           - ubuntu-latest
         storage:
           - s3://tansu/
-          - postgres://postgres:postgres@db
         tansu:
           - ghcr.io/tansu-io/tansu:main
           - ghcr.io/tansu-io/tansu:latest
