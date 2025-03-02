@@ -35,9 +35,8 @@ services:
   kafka:
     image: apache/kafka:3.9.0
     command: /bin/sleep infinity
-    links:
-      - tansu
-      - minio
+    ports:
+      - 19092:9092
   tansu:
     image: ${TANSU_IMAGE}
     restart: unless-stopped
