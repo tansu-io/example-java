@@ -35,8 +35,6 @@ services:
   kafka:
     image: apache/kafka:3.9.0
     command: /bin/sleep 3600
-    links:
-      - tansu
   tansu:
     image: ${TANSU_IMAGE}
     restart: unless-stopped

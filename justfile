@@ -80,7 +80,7 @@ person-topic-consume:
         --property print.value=true
 
 bats:
-    bats tests
+    bats --trace --verbose-run tests
 
 codespace-create:
     gh codespace create \
