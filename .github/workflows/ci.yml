@@ -44,4 +44,5 @@ jobs:
       - run: sudo apt-get install -y bats
       - run: docker compose exec db /usr/bin/pg_isready --timeout=60
       - run: docker compose exec kafka /usr/bin/nslookup tansu
+      - run: docker compose exec kafka /usr/bin/nslookup minio
       - run: bats --trace --verbose-run tests
