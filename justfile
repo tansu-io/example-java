@@ -43,10 +43,10 @@ test-topic-get-offsets-latest:
     docker compose exec kafka /opt/kafka/bin/kafka-get-offsets.sh --bootstrap-server ${ADVERTISED_LISTENER} --topic test --time latest
 
 test-topic-produce:
-    echo "h1:pqr,h2:jkl,h3:uio	qwerty	poiuy\nh1:def,h2:lmn,h3:xyz	asdfgh	lkj\nh1:stu,h2:fgh,h3:ijk	zxcvbn	mnbvc" | docker compose exec kafka /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server ${ADVERTISED_LISTENER} --topic test --property parse.headers=true --property parse.key=true
+    echo "h1:pqr,h2:jkl,h3:uio	qwerty	poiuy\nh1:def,h2:lmn,h3:xyz	asdfgh	lkj\nh1:stu,h2:fgh,h3:ijk	zxcvbn	mnbvc" | docker compose exec --no-TTY kafka /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server ${ADVERTISED_LISTENER} --topic test --property parse.headers=true --property parse.key=true
 
 test-topic-consume:
-    docker compose exec kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server ${ADVERTISED_LISTENER} --consumer-property fetch.max.wait.ms=15000 --group test-consumer-group --topic test --from-beginning --property print.timestamp=true --property print.key=true --property print.offset=true --property print.partition=true --property print.headers=true --property print.value=true
+    docker compose exec kafka /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server ${ADVERTISED_LISTENER} --timeout-ms 30000 --consumer-property fetch.max.wait.ms=15000 --group test-consumer-group --topic test --from-beginning --property print.key=true --property print.offset=true --property print.partition=true --property print.headers=true --property print.value=true
 
 test-consumer-group-describe:
     docker compose exec kafka /opt/kafka/bin/kafka-consumer-groups.sh --bootstrap-server ${ADVERTISED_LISTENER} --group test-consumer-group --describe
