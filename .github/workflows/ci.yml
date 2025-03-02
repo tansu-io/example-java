@@ -43,5 +43,5 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install -y bats
       - run: docker compose exec db /usr/bin/pg_isready --timeout=60
-      - run: docker inspect "$(docker compose ps -a --format '{{.ID}}\t{{.Service}}'|grep tansu|cut -f1)"
+      - run: docker compose exec kafka /usr/bin/nslookup tansu
       - run: bats --trace --verbose-run tests
