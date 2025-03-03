@@ -79,7 +79,7 @@ person-topic-consume:
         --property print.headers=true \
         --property print.value=true
 
-bats:
+bats: docker-compose-down up
     bats --trace --verbose-run tests
 
 codespace-create:
