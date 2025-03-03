@@ -1,5 +1,8 @@
 set dotenv-load
 
+bats: docker-compose-down up
+    bats --trace --verbose-run tests
+
 docker-compose-up:
     docker compose up --detach
 
@@ -11,7 +14,6 @@ docker-compose-ps:
 
 docker-compose-logs:
     docker compose logs
-
 
 minio-local-alias:
     docker compose exec minio /usr/bin/mc alias set local http://localhost:9000 minioadmin minioadmin
@@ -78,9 +80,6 @@ person-topic-consume:
         --property print.partition=true \
         --property print.headers=true \
         --property print.value=true
-
-bats: docker-compose-down up
-    bats --trace --verbose-run tests
 
 codespace-create:
     gh codespace create \
