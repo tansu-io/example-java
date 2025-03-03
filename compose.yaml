@@ -37,7 +37,7 @@ services:
     networks:
       - main
   kafka:
-    image: apache/kafka:3.9.0
+    image: ${KAFKA_IMAGE}
     command: /bin/sleep infinity
     networks:
       - main
@@ -45,16 +45,16 @@ services:
     image: ${TANSU_IMAGE}
     restart: unless-stopped
     environment:
-      CLUSTER_ID: ${CLUSTER_ID}
       ADVERTISED_LISTENER_URL: ${ADVERTISED_LISTENER_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_ALLOW_HTTP: ${AWS_ALLOW_HTTP}
+      AWS_ENDPOINT: ${AWS_ENDPOINT}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      CLUSTER_ID: ${CLUSTER_ID}
       PROMETHEUS_LISTENER_URL: ${PROMETHEUS_LISTENER_URL}
-      STORAGE_ENGINE: ${STORAGE_ENGINE}
       RUST_BACKTRACE: ${RUST_BACKTRACE}
       RUST_LOG: ${RUST_LOG}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-      AWS_ENDPOINT: ${AWS_ENDPOINT}
-      AWS_ALLOW_HTTP: ${AWS_ALLOW_HTTP}
+      STORAGE_ENGINE: ${STORAGE_ENGINE}
     volumes:
       - ./etc/schema/:/schema/
     command: --kafka-cluster-id ${CLUSTER_ID}

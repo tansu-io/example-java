@@ -19,6 +19,9 @@ jobs:
         storage:
           - s3://tansu/
           - postgres://postgres:postgres@db
+        kafka:
+          - apache/kafka:3.8.1
+          - apache/kafka:3.9.0
         tansu:
           - ghcr.io/tansu-io/tansu:main
           - ghcr.io/tansu-io/tansu:latest
@@ -31,6 +34,7 @@ jobs:
       AWS_ENDPOINT: http://minio:9000
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       CLUSTER_ID: kafka-python-integration
+      KAFKA_IMAGE: ${{matrix.kafka}}
       PROMETHEUS_LISTENER_URL: tcp://localhost:9100
       RUST_BACKTRACE: 1
       RUST_LOG: warn,tansu_server=debug,tansu_storage=debug,tansu_schema_registry=debug
