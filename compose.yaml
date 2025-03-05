@@ -65,7 +65,6 @@ services:
     ports:
       - 9092:9092
       - 9100:9100
-    pull_policy: always
     networks:
       - main
 networks:
