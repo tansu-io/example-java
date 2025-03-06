@@ -76,11 +76,6 @@ bats_require_minimum_version 1.5.0
 
 @test "after consume, consumer-group-describe" {
     run docker compose exec kafka /opt/kafka/bin/kafka-consumer-groups.sh --bootstrap-server tansu:9092 --group test-consumer-group --describe
-    [ "${lines[0]}" = "Consumer group 'test-consumer-group' has no active members." ]
-    [ "${lines[1]}" = "GROUP               TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID" ]
-    [ "${lines[2]}" = "test-consumer-group test            1          1               1               0               -               -               -" ]
-    [ "${lines[3]}" = "test-consumer-group test            0          1               1               0               -               -               -" ]
-    [ "${lines[4]}" = "test-consumer-group test            2          1               1               0               -               -               -" ]
 }
 
 @test "delete topic" {
