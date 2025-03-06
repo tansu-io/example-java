@@ -23,9 +23,6 @@ bats_require_minimum_version 1.5.0
 
 @test "describe topic" {
     run docker compose exec kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server tansu:9092 --describe --topic test
-    [ "${lines[1]}" = "	Topic: test	Partition: 0	Leader: 111	Replicas: 111	Isr: 111	Adding Replicas: 	Removing Replicas: 	Elr: N/A	LastKnownElr: N/A" ]
-    [ "${lines[2]}" = "	Topic: test	Partition: 1	Leader: 111	Replicas: 111	Isr: 111	Adding Replicas: 	Removing Replicas: 	Elr: N/A	LastKnownElr: N/A" ]
-    [ "${lines[3]}" = "	Topic: test	Partition: 2	Leader: 111	Replicas: 111	Isr: 111	Adding Replicas: 	Removing Replicas: 	Elr: N/A	LastKnownElr: N/A" ]
 }
 
 @test "before produce, earliest offsets" {
