@@ -25,7 +25,6 @@ jobs:
           - apache/kafka:3.7.0
         tansu:
           - ghcr.io/tansu-io/tansu:main
-          - ghcr.io/tansu-io/tansu:latest
     runs-on: ${{matrix.os}}
     env:
       ADVERTISED_LISTENER_URL: tcp://tansu:9092
