@@ -26,6 +26,9 @@ minio-ready-local:
 
 up: docker-compose-up minio-ready-local minio-local-alias minio-tansu-bucket
 
+psql:
+    docker compose exec db psql $*
+
 list-topics:
     docker compose exec kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server ${ADVERTISED_LISTENER} --list
 
