@@ -16,8 +16,6 @@ services:
       timeout: 10s
       retries: 5
     pull_policy: missing
-    networks:
-      - main
   minio:
     image: quay.io/minio/minio
     command: server /data --console-address ":9001"
@@ -34,13 +32,9 @@ services:
       retries: 1
       start_period: 5s
       timeout: 5s
-    networks:
-      - main
   kafka:
     image: ${KAFKA_IMAGE}
     command: /bin/sleep infinity
-    networks:
-      - main
   tansu:
     image: ${TANSU_IMAGE}
     restart: unless-stopped
@@ -65,10 +59,6 @@ services:
     ports:
       - 9092:9092
       - 9100:9100
-    networks:
-      - main
-networks:
-  main:
 volumes:
   db:
     driver: local
